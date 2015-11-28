@@ -1,5 +1,6 @@
 package com.codepath.instagramclient;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,8 @@ public class PhotosActivity extends AppCompatActivity {
 
     private List<InstagramPhoto> photos;
     private InstagramPhotosAdapter aPhotos;
+    private SwipeRefreshLayout swipeContainer;
+
     private static final String TAG = "InstagramClient";
 
     @Override
@@ -37,6 +40,14 @@ public class PhotosActivity extends AppCompatActivity {
         ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
         lvPhotos.setAdapter(aPhotos);
         fetchPopularPhotos();
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchPopularPhotos();
+            }
+        });
     }
 
     public void fetchPopularPhotos() {
@@ -45,6 +56,7 @@ public class PhotosActivity extends AppCompatActivity {
         client.get(url, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                aPhotos.clear();
                 try {
                     JSONArray array = response.getJSONArray("data");
                     for (int i = 0; i < array.length(); i++) {
@@ -54,6 +66,7 @@ public class PhotosActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 aPhotos.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
