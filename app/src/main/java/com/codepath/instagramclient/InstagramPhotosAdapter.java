@@ -93,7 +93,10 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
         // clear the ImageView first (because it might be from recycled object)
         viewHolder.ivPhoto.setImageDrawable(null);
-        Picasso.with(getContext()).load(photo.imageUrl).into(viewHolder.ivPhoto); // happens in background thread
+        Picasso.with(getContext())
+                .load(photo.imageUrl)
+                .placeholder(R.drawable.placeholder)
+                .into(viewHolder.ivPhoto); // happens in background thread
 
         return convertView;
     }
