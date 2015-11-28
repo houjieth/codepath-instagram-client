@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:background="@android:color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_height="match_parent">
+
+    <ImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginLeft="2dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/ivUserImage"/>
+
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivUserImage"
+        android:layout_marginLeft="10dp"
+        android:gravity="center|left"
+        android:text="USER NAME"
+        android:textStyle="bold"
+        android:textColor="#275A85"
+        android:layout_alignTop="@id/ivUserImage"
+        android:layout_alignBottom="@id/ivUserImage"
+        android:id="@+id/tvUsername"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tvUsername"
+        android:layout_alignBottom="@id/tvUsername"
+        android:layout_toRightOf="@id/tvUsername"
+        android:layout_marginRight="2dp"
+        android:text="TIME"
+        android:gravity="center|right"
+        android:id="@+id/tvTimestamp"
+        android:layout_alignParentRight="true"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivPhoto"
+        android:layout_below="@id/tvUsername"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:minHeight="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CAPTION"
+        android:id="@+id/tvCaption"
+        android:layout_below="@+id/ivPhoto"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:maxLines="3"
+        android:ellipsize="end"/>
+
+
+</RelativeLayout>
